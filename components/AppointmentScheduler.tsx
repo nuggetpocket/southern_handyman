@@ -232,7 +232,7 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
             <div key="step-datetime" className="space-y-8 animate-step-in">
               <div>
                 <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 block">Pick a Day</label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-h-64 overflow-y-auto no-scrollbar">
                   {availableDates.map((date) => (
                     <button
                       key={date}
