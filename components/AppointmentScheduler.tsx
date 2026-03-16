@@ -308,17 +308,6 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-black text-slate-700 ml-1">Email <span className="text-slate-400 font-medium normal-case">(optional)</span></label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="you@example.com"
-                  className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-4 focus:ring-red-50 outline-none transition-all font-bold placeholder:text-slate-300"
-                />
-              </div>
-              <div className="space-y-2">
                 <label className="text-sm font-black text-slate-700 ml-1">Home Address</label>
                 <input 
                   type="text" 
