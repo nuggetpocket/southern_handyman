@@ -17,16 +17,30 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-2 md:py-5'}`}>
 
-      {/* Company name banner — hidden when scrolled */}
+      {/* Top banner — logo + company name + Book Now on mobile, company name only on desktop */}
       {!isScrolled && (
-        <div className="w-full bg-slate-900 py-2 text-center">
+        <div className="w-full bg-slate-900 px-4 md:px-8 py-2 flex items-center justify-between md:justify-center">
+          {/* Mobile: logo on left */}
+          <button onClick={onNavigateHome} className="md:hidden outline-none shrink-0" aria-label="Southern Handyman Home">
+            <img src={logoUrl} alt="Southern Handyman & Assembly" className="h-10 w-auto" />
+          </button>
+
+          {/* Company name — centered on mobile, full-width centered on desktop */}
           <span className="text-[11px] md:text-xs font-black uppercase tracking-[0.35em] text-white">
             Southern Handyman <span className="text-red-500 mx-1.5">·</span> Services
           </span>
+
+          {/* Mobile: Book Now on right */}
+          <button
+            onClick={onScheduleClick}
+            className="md:hidden bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg active:scale-95 shrink-0"
+          >
+            Book Now
+          </button>
         </div>
       )}
 
-      {/* Top Bar - Credibility Info - Hidden on Scrolled */}
+      {/* Desktop credibility bar */}
       {!isScrolled && (
         <div className="hidden lg:flex justify-between items-center px-8 pb-4 text-xs font-medium text-gray-500 border-b border-gray-100/50 mb-4">
           <div className="flex items-center space-x-6">
@@ -38,20 +52,6 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
           </div>
         </div>
       )}
-
-      {/* Mobile nav: single row, compact */}
-      <div className="md:hidden flex items-center justify-between px-4">
-        <button onClick={onNavigateHome} className="outline-none" aria-label="Southern Handyman Home">
-          <img src={logoUrl} alt="Southern Handyman & Assembly" className="h-12 w-auto" />
-        </button>
-        <button
-          onClick={onScheduleClick}
-          className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-red-100 active:scale-95 flex items-center gap-2"
-        >
-          <Calendar className="w-4 h-4" />
-          Book Now
-        </button>
-      </div>
 
       {/* Desktop nav */}
       <nav className="hidden md:flex max-w-7xl mx-auto px-6 items-center justify-between" aria-label="Main Navigation">
