@@ -104,7 +104,7 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
         description: formData.description,
         ai_summary: brief,
         _subject: `NEW LEAD: ${formData.name} - ${serviceTitle}`,
-        _replyto: formData.email || formData.phone,
+        ...(formData.email ? { _replyto: formData.email } : {}),
       };
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
