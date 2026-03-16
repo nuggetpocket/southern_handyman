@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { SERVICES } from '../constants';
-import { ChevronDown, Phone, Mail, Clock, Wrench, Calendar } from 'lucide-react';
+import { ChevronDown, Phone, Mail, Clock, Calendar } from 'lucide-react';
 
 interface HeaderProps {
   isScrolled: boolean;
@@ -30,19 +30,16 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
 
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between" aria-label="Main Navigation">
         <div className="flex items-center gap-10">
-          <button 
-            onClick={onNavigateHome} 
-            className="flex items-center gap-3.5 group outline-none"
+          <button
+            onClick={onNavigateHome}
+            className="flex items-center group outline-none"
             aria-label="Southern Handyman Home"
           >
-            <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-red-600 rounded-2xl shadow-lg shadow-red-100 group-hover:scale-105 transition-transform duration-500">
-              <Wrench className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              <div className="absolute inset-0 border border-black/5 rounded-2xl" />
-            </div>
-            <span className="text-xl md:text-2xl font-bold tracking-tight text-slate-900 flex flex-col items-start leading-none text-left">
-              <span className="text-[8px] md:text-[10px] text-red-600 font-black uppercase tracking-[0.3em] mb-1">Southern</span>
-              <span className="tracking-tighter">HANDYMAN</span>
-            </span>
+            <img
+              src="/logo.png"
+              alt="Southern Handyman & Assembly"
+              className="h-14 md:h-16 w-auto group-hover:scale-105 transition-transform duration-300"
+            />
           </button>
 
           {/* Desktop Links - Visible on MD and up */}
