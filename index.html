@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Resource Prioritization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    
+    <!-- Primary SEO Meta Tags: High-Density Houston Regional Target -->
+    <title>Southern Handyman | #1 Home Repair in Houston, Katy, The Woodlands & Sugar Land</title>
+    <meta name="description" content="Top-rated professional handyman services serving a 90-mile radius of Houston. Specialized in expert home repair, lighting, carpentry, and maintenance in Katy, The Woodlands, Sugar Land, Pearland, Cypress, and Galveston." />
+    <meta name="keywords" content="handyman Houston, handyman Katy TX, home repair The Woodlands, furniture assembly Sugar Land, lighting installation Pearland, drywall repair Cypress, gutter cleaning Conroe, professional handyman Galveston, Greater Houston home maintenance, local handyman League City" />
+    <meta name="author" content="Southern Handyman" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://southernhandyman.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://southernhandyman.com/" />
+    <meta property="og:title" content="Southern Handyman | Professional Home Repair for the Greater Houston Area" />
+    <meta property="og:description" content="Expert home repair and assembly services serving Houston and all surrounding cities within 90 miles. Reliable and owner-operated." />
+    <meta property="og:image" content="https://southernhandyman.com/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+
+    <!-- Local Business Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "Southern Handyman",
+        "alternateName": "Southern Handyman and Assembly",
+        "image": "https://southernhandyman.com/logo.png",
+        "@id": "https://southernhandyman.com",
+        "url": "https://southernhandyman.com",
+        "telephone": "+13466292497",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Serving 90-mile radius of Greater Houston",
+          "addressLocality": "Houston",
+          "addressRegion": "TX",
+          "postalCode": "77001",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 29.7604,
+          "longitude": -95.3698
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Houston" },
+          { "@type": "City", "name": "Katy" },
+          { "@type": "City", "name": "The Woodlands" },
+          { "@type": "City", "name": "Sugar Land" },
+          { "@type": "City", "name": "Pearland" },
+          { "@type": "City", "name": "Cypress" },
+          { "@type": "City", "name": "Conroe" },
+          { "@type": "City", "name": "Galveston" },
+          { "@type": "City", "name": "League City" },
+          { "@type": "City", "name": "Spring" },
+          { "@type": "City", "name": "Humble" },
+          { "@type": "City", "name": "Tomball" }
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        }
+      }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        scroll-behavior: smooth;
+        font-display: swap;
+      }
+      .stripe-gradient {
+        background: radial-gradient(circle at 10% 20%, rgba(0, 102, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+      }
+      .border-beam {
+        position: relative;
+        overflow: hidden;
+      }
+      .border-beam::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 2px solid transparent;
+        background: linear-gradient(90deg, transparent, #ef4444, transparent) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .border-beam:hover::after {
+        opacity: 1;
+        animation: beam 2s linear infinite;
+      }
+      @keyframes beam {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      .card-lift {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      }
+      .card-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      @keyframes step-in {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes zoom-in {
+        from { opacity: 0; transform: scale(0.97); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .animate-step-in {
+        animation: step-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+      .animate-fade-in {
+        animation: fade-in 0.5s ease-out forwards;
+      }
+      .animate-zoom-in {
+        animation: zoom-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+
+      elevenlabs-convai {
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+        transition-delay: 0.2s; 
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      body.scheduler-active elevenlabs-convai {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(30px) !important;
+        pointer-events: none !important;
+        transition: opacity 0.3s ease-in, transform 0.3s ease-in, visibility 0.3s;
+        transition-delay: 0s;
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <elevenlabs-convai agent-id="agent_4201kfsgr62tfa8t76n3ss60rq97"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
