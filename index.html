@@ -227,21 +227,18 @@
         function closeWidget() {
           isOpen = false;
           closeBtn.classList.remove('visible');
-          // Try the widget's own internal close button via shadow DOM
-          var shadow = widget.shadowRoot;
-          if (shadow) {
-            var btns = shadow.querySelectorAll('button');
-            for (var i = 0; i < btns.length; i++) {
-              var label = ((btns[i].getAttribute('aria-label') || '') + btns[i].textContent).toLowerCase();
-              if (label.match(/close|end|dismiss|stop|hang/)) {
-                btns[i].click();
-                return;
-              }
-            }
-          }
-          // Fallback: toggle display to reset the widget
-          widget.style.display = 'none';
-          setTimeout(function () { widget.style.display = ''; }, 50);
+          // Remove the widget from the DOM and re-insert a fresh copy.
+          // This is the only reliable way to force the widget back to its
+          // collapsed state since we cannot access its shadow DOM internals.
+          var agentId = widget.getAttribute('agent-id');
+          var parent = widget.parentNode;
+          var next = widget.nextSibling;
+          parent.removeChild(widget);
+          var fresh = document.createElement('elevenlabs-convai');
+          fresh.setAttribute('agent-id', agentId);
+          parent.insertBefore(fresh, next);
+          widget = fresh;
+          widget.addEventListener('click', openWidget);
         }
 
         widget.addEventListener('click', openWidget);
