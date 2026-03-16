@@ -151,7 +151,7 @@
 
       elevenlabs-convai {
         transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
-        transition-delay: 0.2s; 
+        transition-delay: 0.2s;
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
@@ -163,6 +163,32 @@
         pointer-events: none !important;
         transition: opacity 0.3s ease-in, transform 0.3s ease-in, visibility 0.3s;
         transition-delay: 0s;
+      }
+      /* Mobile close button for AI widget */
+      #ai-widget-close {
+        display: none;
+        position: fixed;
+        top: 14px;
+        right: 14px;
+        z-index: 2147483647;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #1e293b;
+        color: #fff;
+        border: none;
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+        -webkit-tap-highlight-color: transparent;
+      }
+      @media (max-width: 768px) {
+        #ai-widget-close.visible {
+          display: flex;
+        }
       }
     </style>
     <script type="importmap">
@@ -180,7 +206,48 @@
   <body>
     <div id="root"></div>
     <elevenlabs-convai agent-id="agent_4201kfsgr62tfa8t76n3ss60rq97"></elevenlabs-convai>
+    <button id="ai-widget-close" aria-label="Close AI assistant">&#x2715;</button>
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+    <script>
+      (function () {
+        var widget = document.querySelector('elevenlabs-convai');
+        var closeBtn = document.getElementById('ai-widget-close');
+        if (!widget || !closeBtn) return;
+        var isOpen = false;
+
+        function openWidget() {
+          if (!isOpen) {
+            isOpen = true;
+            setTimeout(function () {
+              if (window.innerWidth <= 768) closeBtn.classList.add('visible');
+            }, 500);
+          }
+        }
+
+        function closeWidget() {
+          isOpen = false;
+          closeBtn.classList.remove('visible');
+          // Try the widget's own internal close button via shadow DOM
+          var shadow = widget.shadowRoot;
+          if (shadow) {
+            var btns = shadow.querySelectorAll('button');
+            for (var i = 0; i < btns.length; i++) {
+              var label = ((btns[i].getAttribute('aria-label') || '') + btns[i].textContent).toLowerCase();
+              if (label.match(/close|end|dismiss|stop|hang/)) {
+                btns[i].click();
+                return;
+              }
+            }
+          }
+          // Fallback: toggle display to reset the widget
+          widget.style.display = 'none';
+          setTimeout(function () { widget.style.display = ''; }, 50);
+        }
+
+        widget.addEventListener('click', openWidget);
+        closeBtn.addEventListener('click', closeWidget);
+      })();
+    </script>
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>
