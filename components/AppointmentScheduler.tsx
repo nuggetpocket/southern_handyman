@@ -72,15 +72,19 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
     const serviceTitle = SERVICES.find(s => s.id === selectedService)?.title || selectedService;
 
     try {
-      // Step 1: AI Lead Synthesis
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const aiResponse = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: `Summarize this lead into a professional 1-sentence notification. 
-                  Customer: ${formData.name}. Needs: ${formData.description}. Address: ${formData.address}.`,
-      });
-
-      const brief = aiResponse.text?.trim() || `New lead for ${serviceTitle}.`;
+      // Step 1: AI Lead Synthesis (best-effort — failure does not block submission)
+      let brief = `New lead for ${serviceTitle} from ${formData.name}.`;
+      try {
+        const ai = new GoogleGenAI({ apiKey: (import.meta as any).env?.VITE_API_KEY || '' });
+        const aiResponse = await ai.models.generateContent({
+          model: 'gemini-2.0-flash',
+          contents: `Summarize this lead into a professional 1-sentence notification.
+                    Customer: ${formData.name}. Needs: ${formData.description}. Address: ${formData.address}.`,
+        });
+        brief = aiResponse.text?.trim() || brief;
+      } catch {
+        // AI unavailable — continue with default summary
+      }
       setLeadBrief(brief);
 
       // Step 2: Formspree Transmission
