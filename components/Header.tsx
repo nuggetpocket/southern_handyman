@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { SERVICES } from '../constants';
 import { ChevronDown, Phone, Mail, Clock, Calendar } from 'lucide-react';
+import logoUrl from '../assets/logo.png';
 
 interface HeaderProps {
   isScrolled: boolean;
@@ -36,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
             aria-label="Southern Handyman Home"
           >
             <img
-              src="/logo.png"
+              src={logoUrl}
               alt="Southern Handyman & Assembly"
               className="h-14 md:h-16 w-auto group-hover:scale-105 transition-transform duration-300"
             />
