@@ -16,6 +16,16 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+
+      {/* Company name banner — hidden when scrolled */}
+      {!isScrolled && (
+        <div className="w-full bg-slate-900 py-2 text-center">
+          <span className="text-[11px] md:text-xs font-black uppercase tracking-[0.35em] text-white">
+            Southern Handyman <span className="text-red-500 mx-1.5">·</span> Services
+          </span>
+        </div>
+      )}
+
       {/* Top Bar - Credibility Info - Hidden on Scrolled */}
       {!isScrolled && (
         <div className="hidden lg:flex justify-between items-center px-8 pb-4 text-xs font-medium text-gray-500 border-b border-gray-100/50 mb-4">
