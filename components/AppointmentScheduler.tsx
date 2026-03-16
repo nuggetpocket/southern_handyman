@@ -26,7 +26,6 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: '',
     address: '',
     description: ''
   });
@@ -97,14 +96,13 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
       const payload = {
         name: formData.name,
         phone: formData.phone,
-        email: formData.email || 'booking@southernhandyman.com',
+        email: 'booking@southernhandyman.com',
         address: formData.address,
         service: serviceTitle,
         appointment: `${selectedDate} at ${selectedTime}`,
         description: formData.description,
         ai_summary: brief,
         _subject: `NEW LEAD: ${formData.name} - ${serviceTitle}`,
-        ...(formData.email ? { _replyto: formData.email } : {}),
       };
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -157,7 +155,7 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
       setSelectedService(null);
       setSelectedDate(null);
       setSelectedTime(null);
-      setFormData({ name: '', phone: '', email: '', address: '', description: '' });
+      setFormData({ name: '', phone: '', address: '', description: '' });
       setProgress(0);
       setLeadBrief('');
     }, 300);
