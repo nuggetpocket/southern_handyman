@@ -39,7 +39,22 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
         </div>
       )}
 
-      <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between" aria-label="Main Navigation">
+      {/* Mobile nav: logo centered, Book Now below */}
+      <div className="md:hidden flex flex-col items-center gap-2 px-6 pb-2">
+        <button onClick={onNavigateHome} className="outline-none" aria-label="Southern Handyman Home">
+          <img src={logoUrl} alt="Southern Handyman & Assembly" className="h-16 w-auto" />
+        </button>
+        <button
+          onClick={onScheduleClick}
+          className="bg-red-600 hover:bg-red-700 text-white px-8 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-red-100 active:scale-95 flex items-center gap-2"
+        >
+          <Calendar className="w-4 h-4" />
+          Book Now
+        </button>
+      </div>
+
+      {/* Desktop nav */}
+      <nav className="hidden md:flex max-w-7xl mx-auto px-6 items-center justify-between" aria-label="Main Navigation">
         <div className="flex items-center gap-10">
           <button
             onClick={onNavigateHome}
@@ -49,38 +64,29 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
             <img
               src={logoUrl}
               alt="Southern Handyman & Assembly"
-              className="h-20 md:h-24 w-auto group-hover:scale-105 transition-transform duration-300"
+              className="h-24 w-auto group-hover:scale-105 transition-transform duration-300"
             />
           </button>
 
-          {/* Desktop Links - Visible on MD and up */}
-          <ul className="hidden md:flex items-center space-x-8 text-[15px] font-bold text-slate-600 uppercase tracking-widest">
+          <ul className="flex items-center space-x-8 text-[15px] font-bold text-slate-600 uppercase tracking-widest">
             <li><button onClick={onNavigateHome} className="hover:text-red-600 transition-colors">Home</button></li>
-            <li 
+            <li
               className="relative py-2"
               onMouseEnter={() => setShowServices(true)}
               onMouseLeave={() => setShowServices(false)}
             >
-              <button 
+              <button
                 className="flex items-center gap-1 hover:text-red-600 transition-colors"
                 aria-haspopup="true"
                 aria-expanded={showServices}
               >
                 Services <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showServices ? 'rotate-180' : ''}`} />
               </button>
-
-              {/* Mega Menu Dropdown */}
               {showServices && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-white rounded-3xl shadow-2xl border border-slate-100 p-8 grid grid-cols-2 gap-6 animate-in fade-in slide-in-from-top-4">
                   {SERVICES.map((service) => (
-                    <a 
-                      key={service.id} 
-                      href={`#${service.id}`}
-                      className="group flex gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors"
-                    >
-                      <div className="text-red-600 mt-1 group-hover:scale-110 transition-transform duration-300">
-                        {service.icon}
-                      </div>
+                    <a key={service.id} href={`#${service.id}`} className="group flex gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+                      <div className="text-red-600 mt-1 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
                       <div>
                         <div className="font-bold text-slate-900 mb-1">{service.title}</div>
                         <div className="text-xs text-slate-500 leading-relaxed font-medium">{service.description}</div>
@@ -91,29 +97,21 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
               )}
             </li>
             <li>
-              <a 
-                href="https://www.yelp.com/biz_photos/southern-handyman-and-assembly-katy-2" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover:text-red-600 transition-colors"
-              >
+              <a href="https://www.yelp.com/biz_photos/southern-handyman-and-assembly-katy-2" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition-colors">
                 Projects
               </a>
             </li>
             <li>
-              <button onClick={onNavigateBlog} className="hover:text-red-600 transition-colors">
-                Blog
-              </button>
+              <button onClick={onNavigateBlog} className="hover:text-red-600 transition-colors">Blog</button>
             </li>
           </ul>
         </div>
 
         <div className="flex items-center">
-          <button 
-            onClick={onScheduleClick} 
-            className="bg-red-600 hover:bg-red-700 text-white px-5 md:px-8 py-3 md:py-4 rounded-2xl text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-lg shadow-red-100 active:scale-95 border-beam flex items-center gap-2"
+          <button
+            onClick={onScheduleClick}
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-lg shadow-red-100 active:scale-95 border-beam flex items-center gap-2"
           >
-            <Calendar className="w-4 h-4 md:hidden" />
             Book Now
           </button>
         </div>
