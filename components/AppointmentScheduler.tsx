@@ -26,6 +26,7 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    email: '',
     address: '',
     description: ''
   });
@@ -96,13 +97,14 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
       const payload = {
         name: formData.name,
         phone: formData.phone,
+        email: formData.email || 'booking@southernhandyman.com',
         address: formData.address,
         service: serviceTitle,
         appointment: `${selectedDate} at ${selectedTime}`,
         description: formData.description,
         ai_summary: brief,
         _subject: `NEW LEAD: ${formData.name} - ${serviceTitle}`,
-        _replyto: formData.phone,
+        _replyto: formData.email || formData.phone,
       };
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -155,7 +157,7 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
       setSelectedService(null);
       setSelectedDate(null);
       setSelectedTime(null);
-      setFormData({ name: '', phone: '', address: '', description: '' });
+      setFormData({ name: '', phone: '', email: '', address: '', description: '' });
       setProgress(0);
       setLeadBrief('');
     }, 300);
@@ -284,26 +286,37 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-black text-slate-700 ml-1">Full Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="John Doe" 
-                    className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-4 focus:ring-red-50 outline-none transition-all font-bold placeholder:text-slate-300" 
+                    placeholder="John Doe"
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-4 focus:ring-red-50 outline-none transition-all font-bold placeholder:text-slate-300"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-black text-slate-700 ml-1">Your Phone</label>
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="(832) 000-0000" 
-                    className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-4 focus:ring-red-50 outline-none transition-all font-bold placeholder:text-slate-300" 
+                    placeholder="(832) 000-0000"
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-4 focus:ring-red-50 outline-none transition-all font-bold placeholder:text-slate-300"
                   />
                 </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-black text-slate-700 ml-1">Email <span className="text-slate-400 font-medium normal-case">(optional)</span></label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="you@example.com"
+                  className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-4 focus:ring-red-50 outline-none transition-all font-bold placeholder:text-slate-300"
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-black text-slate-700 ml-1">Home Address</label>
