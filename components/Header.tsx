@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
   const [showServices, setShowServices] = useState(false);
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-2 md:py-5'}`}>
 
       {/* Company name banner — hidden when scrolled */}
       {!isScrolled && (
@@ -39,14 +39,14 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
         </div>
       )}
 
-      {/* Mobile nav: logo centered, Book Now below */}
-      <div className="md:hidden flex flex-col items-center gap-2 px-6 pb-2">
+      {/* Mobile nav: single row, compact */}
+      <div className="md:hidden flex items-center justify-between px-4">
         <button onClick={onNavigateHome} className="outline-none" aria-label="Southern Handyman Home">
-          <img src={logoUrl} alt="Southern Handyman & Assembly" className="h-16 w-auto" />
+          <img src={logoUrl} alt="Southern Handyman & Assembly" className="h-12 w-auto" />
         </button>
         <button
           onClick={onScheduleClick}
-          className="bg-red-600 hover:bg-red-700 text-white px-8 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-red-100 active:scale-95 flex items-center gap-2"
+          className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-red-100 active:scale-95 flex items-center gap-2"
         >
           <Calendar className="w-4 h-4" />
           Book Now

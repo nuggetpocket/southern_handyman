@@ -9,7 +9,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onScheduleClick, onViewGallery }) => {
   return (
-    <section className="relative min-h-[75vh] md:min-h-[90vh] flex items-center pt-24 pb-12 md:pt-44 md:pb-32 overflow-hidden bg-white" aria-labelledby="hero-title">
+    <section className="relative min-h-[75vh] md:min-h-[90vh] flex items-center pt-32 pb-12 md:pt-44 md:pb-32 overflow-hidden bg-white" aria-labelledby="hero-title">
       <div className="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.4] stripe-gradient" />
         <div className="absolute top-[10%] right-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-50 rounded-full blur-[80px] md:blur-[150px] opacity-70" />
