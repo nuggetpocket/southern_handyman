@@ -101,8 +101,8 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
         appointment: `${selectedDate} at ${selectedTime}`,
         description: formData.description,
         ai_summary: brief,
-        _subject: `🛠️ NEW LEAD: ${formData.name} - ${serviceTitle}`,
-        _message: `CONFIRMED: Appointment for ${formData.name} on ${selectedDate} at ${selectedTime}. SMS confirmation dispatched to ${formData.phone}.`
+        _subject: `NEW LEAD: ${formData.name} - ${serviceTitle}`,
+        _replyto: formData.phone,
       };
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -114,15 +114,18 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
         body: JSON.stringify(payload)
       });
 
+      const result = await response.json().catch(() => ({}));
+
       if (!response.ok) {
-        throw new Error('Formspree dispatch failed');
+        const detail = result?.errors?.map((e: any) => e.message).join(', ') || result?.error || `HTTP ${response.status}`;
+        throw new Error(`Formspree error: ${detail}`);
       }
 
       await new Promise(resolve => setTimeout(resolve, 3000));
       setStep('success');
-    } catch (err) {
+    } catch (err: any) {
       console.error("Transmission error:", err);
-      setError("Delivery failed. Please try again or call Sam directly at (346) 629-2497.");
+      setError(err?.message || "Delivery failed. Please try again or call Sam directly at (346) 629-2497.");
       setStep('details'); 
     }
   };
