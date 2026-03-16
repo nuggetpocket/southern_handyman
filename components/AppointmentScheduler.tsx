@@ -63,7 +63,7 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
     '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM',
     '04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM'
   ];
-  const availableDates = Array.from({ length: 7 }, (_, i) => {
+  const availableDates = Array.from({ length: 14 }, (_, i) => {
     const d = new Date();
     d.setDate(d.getDate() + i + 1);
     return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
