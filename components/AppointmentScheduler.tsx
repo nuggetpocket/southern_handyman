@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, ChevronRight, Calendar, CheckCircle2, ShieldCheck, ArrowLeft, Loader2, MessageSquare, Signal, Shield, Cpu, Zap, Send, Smartphone, Globe, Lock } from 'lucide-react';
 import { SERVICES } from '../constants';
+import { HelpCircle } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 
 interface AppointmentSchedulerProps {
@@ -207,6 +208,19 @@ const AppointmentScheduler: React.FC<AppointmentSchedulerProps> = ({ isOpen, onC
                   </div>
                 </button>
               ))}
+              {/* Other option */}
+              <button
+                onClick={() => { setSelectedService('other'); handleNext(); }}
+                className={`group flex items-start gap-4 p-5 rounded-3xl border-2 text-left transition-all duration-300 ${selectedService === 'other' ? 'border-red-600 bg-red-50/50 shadow-lg shadow-red-100' : 'border-slate-100 hover:border-red-200 hover:bg-slate-50'}`}
+              >
+                <div className={`p-3 rounded-2xl transition-colors ${selectedService === 'other' ? 'bg-red-600 text-white' : 'bg-red-50 text-red-600 group-hover:bg-red-100'}`}>
+                  <HelpCircle className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900 mb-1">Other</div>
+                  <div className="text-xs text-slate-500 leading-relaxed font-medium">Something else? Describe your job in the next step.</div>
+                </div>
+              </button>
             </div>
           )}
 
