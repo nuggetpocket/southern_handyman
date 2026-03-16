@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onScheduleClick, onNavigate
             <img
               src={logoUrl}
               alt="Southern Handyman & Assembly"
-              className="h-14 md:h-16 w-auto group-hover:scale-105 transition-transform duration-300"
+              className="h-20 md:h-24 w-auto group-hover:scale-105 transition-transform duration-300"
             />
           </button>
 
